@@ -86,3 +86,10 @@ window.PRODUCTS = [
   { cat: "sets", sub: "주제", title: "예수의 삶과 가르침 세트", by: "서적 + 강의 + 낭독", desc: "제4부를 중심으로 예수의 생애를 깊이 읽는 세트.", formats: ["세트"], price: null, status: "ready", cover: ["#6B2E3A", "#EBCDB5"] },
   { cat: "sets", sub: "묵상", title: "기도·묵상 세트", by: "365일 영혼의 기도 + 묵상 오디오", desc: "하루를 말씀과 기도로 여닫는 세트.", formats: ["세트"], price: null, status: "ready", cover: ["#2F5D50", "#DCE8C8"] }
 ];
+
+/* 대분류별 가격 (2026-10-05 결정) — 상품마다 따로 정하려면 위 목록의 price에 숫자를 넣으면 그 값이 우선한다. */
+window.CATEGORY_PRICE = { books: 3000, lectures: 3000, sets: 3000, files: 1000, audio: 1000, images: 1000, goods: null, classes: null };
+window.PRODUCTS.forEach(p => {
+  if (p.price == null) p.price = window.CATEGORY_PRICE[p.cat];
+  if (p.cat === "goods" || p.cat === "classes") { p.price = null; p.status = "soon"; }
+});
