@@ -139,7 +139,11 @@ window.PRODUCTS.forEach(p => {
       desc: `유란시아서 ${n} 「${s}」 우리말 번역. 새 번역 원고로 다시 펴낼 준비를 하고 있습니다.`,
       formats: ["출간 준비"], price: null, status: "soon", cover: [["#14213D","#D9BF8C"],["#2E4A6B","#E2C98F"],["#5C2433","#E6C9CF"],["#6B2E3A","#EBCDB5"]][i] }))
   ];
-  P.splice(at, 0, ...add);
+  const parts = add.filter(x => x.sub === "유란시아서 본문"), others = add.filter(x => x.sub !== "유란시아서 본문");
+  P.splice(at, 0, ...others);
+  // 유란시아서 제1~4부(출간 준비)는 서적의 맨 아래에
+  let last = -1; P.forEach((x, i) => { if (x.cat === "books") last = i; });
+  P.splice(last + 1, 0, ...parts);
   // 『유란시아서 핵심』 = 교보문고 『유란시아서 Study — 52주 소그룹 교제』
   const core = P.find(p => p.title === "유란시아서 핵심");
   if (core) { core.by = "52주 소그룹 교제 · 한종인"; core.desc = "52주 동안 소그룹이 함께 읽고 나누는 유란시아서 핵심 공부 교재.";
