@@ -22,7 +22,7 @@ header.top{position:sticky;top:0;z-index:20;background:rgba(20,33,61,.97);backdr
 .spacer{flex:1}
 .member{border:1px solid var(--gold2);color:var(--gold2);background:none;border-radius:999px;padding:6px 14px;font-size:13.5px;white-space:nowrap}
 .member:hover{background:var(--gold);color:var(--navy);border-color:var(--gold)}
-nav.cats{background:var(--navy2);border-bottom:1px solid rgba(217,191,140,.25)}
+nav.cats{position:sticky;top:64px;z-index:19;background:var(--navy2);border-bottom:1px solid rgba(217,191,140,.25)}
 nav.cats .wrap{display:flex;gap:4px;overflow-x:auto;scrollbar-width:none}nav.cats .wrap::-webkit-scrollbar{display:none}
 nav.cats a{flex:none;color:#C9D0DD;font-size:14.5px;padding:11px 13px;border-bottom:3px solid transparent;white-space:nowrap}
 nav.cats a:hover{color:#fff}nav.cats a.on{color:#fff;border-bottom-color:var(--gold);font-weight:700}
@@ -52,7 +52,7 @@ nav.cats a:hover{color:#fff}nav.cats a.on{color:#fff;border-bottom-color:var(--g
 .fund b{color:var(--navy)}@media (prefers-color-scheme:dark){:root:not([data-theme=light]) .fund b{color:var(--gold2)}}
 /* 진열대 */
 .shelf{padding-block:8px 20px}
-.shelfhead{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;padding-block:36px 14px;border-bottom:1px solid var(--line);margin-bottom:26px}
+.shelfhead{scroll-margin-top:120px;display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;padding-block:36px 14px;border-bottom:1px solid var(--line);margin-bottom:26px}
 .shelfhead small{font:700 11.5px var(--sans);letter-spacing:2.5px;color:var(--gold)}
 .shelfhead h2{font-family:var(--serif);font-weight:900;font-size:26px;margin:0;width:100%}
 .shelfhead span{color:var(--ink2);font-size:14px}
