@@ -174,11 +174,11 @@ function detail(i){
   const action = !OPEN ? "판매 준비 중입니다. 곧 주문하실 수 있습니다." : (p.status === "soon" ? "이 상품은 준비 중입니다." : "주문 안내(준비 중)");
   $("dlbody").innerHTML = `${cover(p, true)}<div><h3>${p.title}</h3><div class="by2">${p.by || ""}</div><p>${p.desc}</p>
     <div class="chips" style="margin-bottom:12px">${p.formats.map(f => `<span>${f}</span>`).join("")}</div>
-    <div class="note">${p.price ? `<b>${won(p.price)}</b> · ` : ""}${action}<br>정회원은 할인과 무료 열람 혜택이 있습니다.</div></div>`;
+    <div class="note">${p.price ? `<b>${won(p.price)}</b> · ` : ""}${action}</div></div>`;
   $("dlg").showModal();
 }
 function memberInfo(){
-  $("dlbody").innerHTML = `<div style="grid-column:1/-1"><h3>유란시아 독자회 정회원</h3><p>정회원(월회비 5,000원)이 되시면 홈페이지의 모든 자료를 무료로 열람하고, 상점의 상품을 할인된 가격으로 만나실 수 있습니다.</p>
+  $("dlbody").innerHTML = `<div style="grid-column:1/-1"><h3>유란시아 독자회 정회원</h3><p>정회원(월회비 5,000원)이 되시면 독자 모임 홈페이지 <b>urantiareaders.com</b>의 모든 자료를 무료로 열람하실 수 있습니다.</p>
     <div class="note">정회원 가입과 로그인은 곧 열립니다.</div></div>`;
   $("dlg").showModal();
 }
