@@ -119,3 +119,9 @@ window.PRODUCTS.forEach(p => {
   if (k) { p.paper = { price: k[0], url: "https://product.kyobobook.co.kr/detail/" + k[1] }; p.formats = ["전자책", "종이책(교보문고)"]; }
   else if (p.title !== "유란시아서가 말하는 성경") p.formats = ["전자책"];
 });
+
+/* 아직 출판 전인 책 (2026-10-05) */
+["간추린 유란시아서", "청소년을 위한 유란시아서"].forEach(t => {
+  const p = window.PRODUCTS.find(x => x.title === t);
+  if (p) { p.status = "soon"; p.price = null; p.formats = ["출간 예정"]; p.tag = "출간 예정"; }
+});
