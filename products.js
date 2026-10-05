@@ -125,3 +125,26 @@ window.PRODUCTS.forEach(p => {
   const p = window.PRODUCTS.find(x => x.title === t);
   if (p) { p.status = "soon"; p.price = null; p.formats = ["출간 예정"]; p.tag = "출간 예정"; }
 });
+
+/* 2026-10-05 추가·정리 */
+(function () {
+  const P = window.PRODUCTS, at = P.findIndex(p => p.sub === "번역서");   // 번역서 앞에 끼운다
+  const add = [
+    { cat: "books", sub: "학습서", title: "유란시아서 도표 I", by: "도표로 읽는 유란시아서 · 한종인",
+      desc: "우주 구조와 상승 여정, 신의 인격들을 도표로 한눈에 정리한 학습서.", formats: ["종이책(교보문고)"],
+      price: null, status: "ready", cover: ["#2F5D8C", "#D6E3F1"],
+      paper: { price: 15000, url: "https://product.kyobobook.co.kr/detail/S000215971950" } },
+    ...[["제1부", "중앙 우주와 초우주"], ["제2부", "지역 우주"], ["제3부", "유란시아의 역사"], ["제4부", "예수의 일생과 가르침"]].map(([n, s], i) => ({
+      cat: "books", sub: "유란시아서 본문", title: `유란시아서 ${n}`, by: `${s} · 한종인 옮김`, tag: "출간 준비",
+      desc: `유란시아서 ${n} 「${s}」 우리말 번역. 새 번역 원고로 다시 펴낼 준비를 하고 있습니다.`,
+      formats: ["출간 준비"], price: null, status: "soon", cover: [["#14213D","#D9BF8C"],["#2E4A6B","#E2C98F"],["#5C2433","#E6C9CF"],["#6B2E3A","#EBCDB5"]][i] }))
+  ];
+  P.splice(at, 0, ...add);
+  // 『유란시아서 핵심』 = 교보문고 『유란시아서 Study — 52주 소그룹 교제』
+  const core = P.find(p => p.title === "유란시아서 핵심");
+  if (core) { core.by = "52주 소그룹 교제 · 한종인"; core.desc = "52주 동안 소그룹이 함께 읽고 나누는 유란시아서 핵심 공부 교재.";
+    core.paper = { price: 15000, url: "https://product.kyobobook.co.kr/detail/S000220217173" }; core.formats = ["전자책", "종이책(교보문고)"]; }
+  // 『유란시아 계시 탐구』 — 교보문고 판매 중지(다시 신청 예정)
+  const ex = P.find(p => p.title === "유란시아 계시 탐구");
+  if (ex) { ex.status = "soon"; ex.price = null; ex.formats = ["판매 준비 중"]; ex.tag = "판매 준비 중"; }
+})();
