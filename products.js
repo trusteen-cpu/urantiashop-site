@@ -17,20 +17,20 @@ window.PRODUCTS = [
   /* ── 서적: 새 책 ── */
   { cat: "books", sub: "새 책", title: "유란시아서가 말하는 성경", by: "한종인 엮음", tag: "NEW",
     desc: "창조에서 요한계시록까지, 유란시아서가 성경에 대해 말하는 것을 168개 주제로 정리했습니다. 성경 구절·해설·유란시아서 본문을 한자리에.",
-    formats: ["종이책", "전자책(PDF)"], price: null, status: "ready", cover: ["#14213D", "#B8925A"] },
+    formats: ["PDF", "종이책(출간 준비)"], price: null, status: "ready", cover: ["#14213D", "#B8925A"] },
   /* ── 서적: 창작서 ── */
   { cat: "books", sub: "창작서", title: "모든 것의 이야기", by: "한종인", desc: "우주와 생명과 인간의 이야기를 처음부터 끝까지 한 흐름으로 읽는 유란시아서 이야기책.",
-    formats: ["종이책", "전자책"], price: null, status: "ready", cover: ["#2E4A6B", "#E2C98F"] },
+    formats: ["PDF"], price: null, status: "ready", cover: ["#2E4A6B", "#E2C98F"] },
   { cat: "books", sub: "창작서", title: "유란시아서 핵심", by: "한종인", desc: "유란시아서의 핵심 가르침을 주제별로 간추린 입문서.",
-    formats: ["종이책", "전자책"], price: null, status: "ready", cover: ["#6B2E3A", "#E9C9A8"] },
+    formats: ["PDF"], price: null, status: "ready", cover: ["#6B2E3A", "#E9C9A8"] },
   { cat: "books", sub: "창작서", title: "365일 영혼의 기도", by: "한종인", desc: "하루 한 편, 유란시아서 말씀에서 길어 올린 일 년의 기도.",
-    formats: ["종이책", "전자책"], price: null, status: "ready", cover: ["#2F5D50", "#DCE8C8"] },
+    formats: ["PDF"], price: null, status: "ready", cover: ["#2F5D50", "#DCE8C8"] },
   { cat: "books", sub: "창작서", title: "하나님의 형상", by: "한종인", desc: "사람 안에 계신 하나님, 생각 조절자와 혼의 성장에 관한 묵상.",
-    formats: ["종이책", "전자책"], price: null, status: "ready", cover: ["#4B3F8C", "#D9CFF0"] },
+    formats: ["PDF"], price: null, status: "ready", cover: ["#4B3F8C", "#D9CFF0"] },
   { cat: "books", sub: "창작서", title: "간추린 유란시아서", by: "한종인", desc: "2,097쪽의 유란시아서를 한 권으로 간추린 요약본.",
-    formats: ["종이책", "전자책"], price: null, status: "ready", cover: ["#7A4E2D", "#F0DDBF"] },
+    formats: ["PDF"], price: null, status: "ready", cover: ["#7A4E2D", "#F0DDBF"] },
   { cat: "books", sub: "창작서", title: "청소년을 위한 유란시아서", by: "한종인", desc: "청소년의 눈높이로 풀어 쓴 유란시아서.",
-    formats: ["종이책", "전자책"], price: null, status: "ready", cover: ["#2F6F8F", "#CFE7F0"] },
+    formats: ["PDF"], price: null, status: "ready", cover: ["#2F6F8F", "#CFE7F0"] },
   /* ── 서적: 번역서 ── */
   ...[
     ["유란시아 계시", "말콤 록크"], ["제5계시 유란시아서", "켈리 엘스트롯"], ["유란시아 계시 탐구", "제임스 왓킨스"],
@@ -39,7 +39,7 @@ window.PRODUCTS = [
     ["거주 우주", "사스키아 프람스마"], ["혼의 진화", "바이런 벨리토스"], ["소피아와의 대화", "올가 로페즈"],
     ["다가오는 개인적 종교의 시대", "폴 슈나이더"], ["영적 거듭남을 위한 21 단계", "해리 맥멀란"]
   ].map(([title, by], i) => ({ cat: "books", sub: "번역서", title, by: by + " 지음 · 한종인 옮김",
-    desc: "세계의 유란시아서 독자가 쓴 책을 우리말로 옮겼습니다.", formats: ["종이책", "전자책"], price: null, status: "ready",
+    desc: "세계의 유란시아서 독자가 쓴 책을 우리말로 옮겼습니다.", formats: ["PDF"], price: null, status: "ready",
     cover: [["#24435C","#C9D9E6"],["#5C2433","#E6C9CF"],["#2F5C24","#D3E6C9"],["#5C4A24","#E6DBC9"]][i % 4] })),
 
   /* ── 강의 동영상 ── */
@@ -116,8 +116,8 @@ window.KYOBO = {
 window.PRODUCTS.forEach(p => {
   if (p.cat !== "books") return;
   const k = window.KYOBO[p.title];
-  if (k) { p.paper = { price: k[0], url: "https://product.kyobobook.co.kr/detail/" + k[1] }; p.formats = ["전자책", "종이책(교보문고)"]; }
-  else if (p.title !== "유란시아서가 말하는 성경") p.formats = ["전자책"];
+  if (k) { p.paper = { price: k[0], url: "https://product.kyobobook.co.kr/detail/" + k[1] }; p.formats = ["PDF", "종이책(교보문고)"]; }
+  else if (p.title !== "유란시아서가 말하는 성경") p.formats = ["PDF"];
 });
 
 /* 아직 출판 전인 책 (2026-10-05) */
@@ -147,7 +147,7 @@ window.PRODUCTS.forEach(p => {
   // 『유란시아서 핵심』 = 교보문고 『유란시아서 Study — 52주 소그룹 교제』
   const core = P.find(p => p.title === "유란시아서 핵심");
   if (core) { core.by = "52주 소그룹 교제 · 한종인"; core.desc = "52주 동안 소그룹이 함께 읽고 나누는 유란시아서 핵심 공부 교재.";
-    core.paper = { price: 15000, url: "https://product.kyobobook.co.kr/detail/S000220217173" }; core.formats = ["전자책", "종이책(교보문고)"]; }
+    core.paper = { price: 15000, url: "https://product.kyobobook.co.kr/detail/S000220217173" }; core.formats = ["PDF", "종이책(교보문고)"]; }
   // 『유란시아 계시 탐구』 — 교보문고 판매 중지(다시 신청 예정)
   const ex = P.find(p => p.title === "유란시아 계시 탐구");
   if (ex) { ex.status = "soon"; ex.price = null; ex.formats = ["판매 준비 중"]; ex.tag = "판매 준비 중"; }
