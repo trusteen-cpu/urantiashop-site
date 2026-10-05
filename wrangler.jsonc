@@ -1,0 +1,13 @@
+{
+  // 유란시아 샵 — Cloudflare Workers(정적 자산). englishstudy-site와 같은 방식.
+  "name": "urantiashop-site",
+  "compatibility_date": "2026-10-01",
+  "assets": {
+    "directory": "."
+  },
+  // 판매를 열 때(주문·정회원 로그인) worker.js와 KV를 붙인다.
+  "routes": [
+    { "pattern": "urantiashop.kr", "custom_domain": true },
+    { "pattern": "www.urantiashop.kr", "custom_domain": true }
+  ]
+}
