@@ -17,7 +17,7 @@ window.PRODUCTS = [
   /* ── 서적: 새 책 ── */
   { cat: "books", sub: "새 책", title: "유란시아서가 말하는 성경", by: "한종인 엮음", tag: "NEW",
     desc: "창조에서 요한계시록까지, 유란시아서가 성경에 대해 말하는 것을 168개 주제로 정리했습니다. 성경 구절·해설·유란시아서 본문을 한자리에.",
-    formats: ["전자책(EPUB·PDF)", "종이책(출간 준비)"], price: null, status: "ready", cover: ["#14213D", "#B8925A"] },
+    formats: ["전자책(EPUB·PDF)", "종이책(교보문고)"], price: null, status: "ready", cover: ["#14213D", "#B8925A"] },
   /* ── 서적: 창작서 ── */
   { cat: "books", sub: "창작서", title: "모든 것의 이야기", by: "한종인", desc: "우주와 생명과 인간의 이야기를 처음부터 끝까지 한 흐름으로 읽는 유란시아서 이야기책.",
     formats: ["PDF"], price: null, status: "ready", cover: ["#2E4A6B", "#E2C98F"] },
@@ -111,13 +111,15 @@ window.KYOBO = {
   "혼의 진화":                     [15000, "S000213662783"],
   "소피아와의 대화":               [8200,  "S000060611499"],
   "다가오는 개인적 종교의 시대":    [10100, "S000220862196"],
-  "영적 거듭남을 위한 21 단계":     [8900,  "S000060599452"]
+  "영적 거듭남을 위한 21 단계":     [8900,  "S000060599452"],
+  "유란시아서가 말하는 성경":       [22000, "S000221573990"],   // 2026-10 출간
+  "새로운 계시 : 유란시아서 탐구":  [15000, "S000221573982"]    // 2026-10 개정증보판
 };
 window.PRODUCTS.forEach(p => {
   if (p.cat !== "books") return;
   const k = window.KYOBO[p.title];
   if (k) { p.paper = { price: k[0], url: "https://product.kyobobook.co.kr/detail/" + k[1] }; p.formats = ["전자책(EPUB·PDF)", "종이책(교보문고)"]; }
-  else if (p.title !== "유란시아서가 말하는 성경") p.formats = ["전자책(EPUB·PDF)"];
+  else p.formats = ["전자책(EPUB·PDF)"];
 });
 
 /* 아직 출판 전인 책 (2026-10-05) */
@@ -148,7 +150,10 @@ window.PRODUCTS.forEach(p => {
   const core = P.find(p => p.title === "유란시아서 핵심");
   if (core) { core.by = "52주 소그룹 교제 · 한종인"; core.desc = "52주 동안 소그룹이 함께 읽고 나누는 유란시아서 핵심 공부 교재.";
     core.paper = { price: 15000, url: "https://product.kyobobook.co.kr/detail/S000220217173" }; core.formats = ["전자책(EPUB·PDF)", "종이책(교보문고)"]; }
-  // 『유란시아 계시 탐구』 — 교보문고 판매 중지(다시 신청 예정)
+  // 『새로운 계시 : 유란시아서 탐구』 개정증보판 — 2026-10 교보문고 판매 시작
   const ex = P.find(p => p.title === "유란시아 계시 탐구");
-  if (ex) { ex.status = "soon"; ex.price = null; ex.formats = ["판매 준비 중"]; ex.tag = "판매 준비 중"; }
+  if (ex) { const k = window.KYOBO["새로운 계시 : 유란시아서 탐구"];
+    ex.title = "새로운 계시 : 유란시아서 탐구"; ex.by = "제임스 왓킨스 · 한종인 옮김"; ex.tag = "개정증보판"; ex.status = "ready";
+    ex.desc = "유란시아서가 세상에 나온 경위부터 하나님, 우주, 인류의 기원, 예수, 죽음 이후의 삶까지 핵심을 소개하는 안내서. 인용을 새번역본으로 바꾼 개정증보판.";
+    ex.paper = { price: k[0], url: "https://product.kyobobook.co.kr/detail/" + k[1] }; ex.formats = ["전자책(EPUB·PDF)", "종이책(교보문고)"]; }
 })();
